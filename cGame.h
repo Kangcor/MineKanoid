@@ -28,6 +28,8 @@ public:
 
 private:
 	unsigned char keys[256];
+	float cam_x, cam_y, cam_z;
+	float azimut, fita;
 	cScene Scene;
 	cData Data;
 	cPlayer Player;

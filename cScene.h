@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cData.h"
+#include "cBlock.h"
 
 #define SCENE_WIDTH		16
 #define SCENE_DEPTH		32
@@ -14,4 +15,8 @@ public:
 
 	bool Init();
 	void Draw(cData *Data);
+	void RenderBlocks();
+
+private:
+	cBlock block;
 };

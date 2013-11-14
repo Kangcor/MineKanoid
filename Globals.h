@@ -12,3 +12,7 @@
 #define PLAYER_WIDTH     2
 #define PLAYER_DEPTH	 1
 #define PLAYER_HEIGHT	 1
+
+#define BLOCK_WIDTH		1
+#define BLOCK_DEPTH		1
+#define BLOCK_HEIGHT	1

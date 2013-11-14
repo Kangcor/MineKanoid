@@ -59,4 +59,12 @@ void cScene::Draw(cData *Data)
 	glEnd();
 	*/
 	glDisable(GL_TEXTURE_2D);
+
+	
+}
+
+void cScene::RenderBlocks()
+{
+	block.setPos(0, 0, 0);
+	block.Draw();
 }
