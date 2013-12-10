@@ -2,10 +2,8 @@
 
 #include "cData.h"
 #include "cBlock.h"
-
-#define SCENE_WIDTH		16
-#define SCENE_DEPTH		32
-#define SCENE_HEIGHT	 4
+#include "cBall.h"
+#include <vector>
 
 class cScene
 {
@@ -15,8 +13,20 @@ public:
 
 	bool Init();
 	void Draw(cData *Data);
-	void RenderBlocks();
 
+	void InitBlocks(int level);
+
+	void RenderBlocks();
+	void RenderBalls(float position);
+	
+	std::vector<cBall> GetBalls();  
+	void SetBalls(std::vector<cBall> balls);
+	
 private:
-	cBlock block;
+
+	std::vector<cBall> ball;
+	cBlock *blocks[16*16];
+    cBlock block;
+    int num_blocks;
+
 };

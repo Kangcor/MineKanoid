@@ -5,13 +5,13 @@
 class cBlock
 {
 public:
-	cBlock(void);
-	virtual ~cBlock(void);
-	void setPos(float x, float y, float z);
+    cBlock(void);
+    virtual ~cBlock(void);
+    void setPos(float x, float y, float z);
+    void setColor(float r, float g, float b);
 	void Draw();
-	void initBlock();
 
 private:
-	float x, y, z;
+    float x, y, z, r, g, b;
 	int id_DL;
 };

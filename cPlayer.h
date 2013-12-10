@@ -8,6 +8,10 @@ public:
 	cPlayer(void);
 	virtual ~cPlayer(void);
 	
-	void Draw(cData *Data);
+	void setPosition(float postion);
+	float getPosition();
 
+	void Draw(cData *Data);
+private:
+	float position;
 };

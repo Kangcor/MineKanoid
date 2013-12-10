@@ -17,6 +17,13 @@ void cBlock::setPos(float x, float y, float z)
 	this->z = z;
 }
 
+void cBlock::setColor(float r, float g, float b)
+{
+        this->r = r;
+        this->g = g;
+        this->b = b;
+}
+
 void cBlock::Draw()
 {
 
@@ -33,7 +40,7 @@ void cBlock::Draw()
 	
 	glBegin(GL_QUADS);
 
-	glColor3f(1.0, 0.0, 0.0);
+	glColor3f(r, g, b);
 	// Front Face
 	glVertex3f(x_left, y_down, z_far);
 	glVertex3f(x_right, y_down, z_far);
@@ -67,7 +74,7 @@ void cBlock::Draw()
 	glVertex3f(x_right, y_down, z_far);
 	glVertex3f(x_left, y_down, z_far);
 
-	glColor3f(1.0, 1.0, 1.0);
+	//glColor3f(1.0, 1.0, 1.0);
 
 	glEnd();
 

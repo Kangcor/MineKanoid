@@ -4,6 +4,8 @@
 #include "cData.h"
 #include "cPlayer.h"
 #include "cPhysics.h"
+#include "cCamera.h"
+
 
 #define SCREEN_WIDTH	800
 #define SCREEN_HEIGHT	600
@@ -21,10 +23,12 @@ public:
 	//Input
 	void ReadKeyboard(unsigned char key, int x, int y, bool press);
 	void ReadMouse(int button, int state, int x, int y);
+	void ReadDraggedMouse(int x, int y);
 	//Process
 	bool Process();
 	//Output
 	void Render();
+	void BallPhysics();
 
 private:
 	unsigned char keys[256];
@@ -34,4 +38,5 @@ private:
 	cData Data;
 	cPlayer Player;
 	cPhysics Physics;
+	cCamera Camera;
 };

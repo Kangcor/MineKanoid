@@ -6,6 +6,7 @@
 #pragma comment(linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"")
 
 cGame Game;
+float initTime;
 
 void AppRender()
 {
@@ -29,11 +30,17 @@ void AppSpecialKeysUp(int key, int x, int y)
 }
 void AppMouse(int button, int state, int x, int y)
 {
-	Game.ReadMouse(button,state,x,y);
+	Game.ReadMouse(button, state, x, y);
+}
+void AppDraggedMouse(int x, int y) {
+	Game.ReadDraggedMouse(x, y);
 }
 void AppIdle()
 {
-	if(!Game.Loop()) exit(0);
+	if ((glutGet(GLUT_ELAPSED_TIME) - initTime) > 1000 / 60){
+		initTime = glutGet(GLUT_ELAPSED_TIME);
+		if (!Game.Loop()) exit(0);
+	}
 }
 
 void main(int argc, char** argv)
@@ -61,7 +68,7 @@ void main(int argc, char** argv)
 
 	//Make the default cursor disappear
 	//glutSetCursor(GLUT_CURSOR_NONE);
-
+	
 	//Register callback functions
 	glutDisplayFunc(AppRender);			
 	glutKeyboardFunc(AppKeyboard);		
@@ -69,6 +76,8 @@ void main(int argc, char** argv)
 	glutSpecialFunc(AppSpecialKeys);	
 	glutSpecialUpFunc(AppSpecialKeysUp);
 	glutMouseFunc(AppMouse);
+	glutMotionFunc(AppDraggedMouse);
+	initTime = glutGet(GLUT_ELAPSED_TIME);
 	glutIdleFunc(AppIdle);
 
 	//Game initializations
