@@ -62,10 +62,10 @@ void cPlayer::Draw(cData *Data)
 	glBindTexture(GL_TEXTURE_2D, Data->GetID(IMG_FLOOR));
 	glBegin(GL_QUADS);
 	// Bottom Face
-	glTexCoord2f(tw, td); glVertex3f(-w + position, -sh, -d + sd);
-	glTexCoord2f(0.0f, td); glVertex3f(w + position, -sh, -d + sd);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(w + position, -sh, d + sd);
-	glTexCoord2f(tw, 0.0f); glVertex3f(-w + position, -sh, d + sd);
+	glTexCoord2f(tw, td); glVertex3f(-w + position, -sh, sd);
+	glTexCoord2f(0.0f, td); glVertex3f(w + position, -sh, sd);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(w + position, -sh, 2*d + sd);
+	glTexCoord2f(tw, 0.0f); glVertex3f(-w + position, -sh, 2*d + sd);
 	glEnd();
 
 	glBindTexture(GL_TEXTURE_2D, Data->GetID(IMG_ROOF));

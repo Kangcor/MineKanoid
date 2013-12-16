@@ -1,5 +1,6 @@
 #pragma once
 
+#include "cBlock.h"
 #include "cBall.h"
 #include "cPlayer.h"
 
@@ -9,5 +10,7 @@ public:
 	cPhysics(void);
 	virtual ~cPhysics(void);
 
-	bool Collide(cBall ball, cPlayer player);
+	void CollidePlayer(cBall &ball, cPlayer &player);
+	void CollideBlock(cBall &ball, cBlock &block);
+	bool CornerInsideBox(float coordX, float coordZ, float top, float bot, float izq, float der);
 };

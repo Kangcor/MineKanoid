@@ -29,6 +29,7 @@ public:
 	//Output
 	void Render();
 	void BallPhysics();
+	void BlockPhysics();
 
 private:
 	unsigned char keys[256];

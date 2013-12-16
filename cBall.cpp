@@ -7,8 +7,8 @@ cBall::cBall(void)
 	this->x = 0.0;
 	this->y = -(SCENE_HEIGHT/2) + BALL_RADIUS;
 	this->z = 0.0;
-	this->difX = 0.1;
-	this->difZ = 0.1;
+	this->difX = 0.05;
+	this->difZ = 0.05;
 	this->r = 0;
 	this->g = 0;
 	this->b = 255;
@@ -21,6 +21,12 @@ void cBall::setPos(float x, float z)
 	this->z = z;
 }
 
+void cBall::setDif(float difX, float difZ)
+{
+	this->difX = difX;
+	this->difZ = difZ;
+}
+
 float cBall::getX()
 {
 	return x;
@@ -29,6 +35,16 @@ float cBall::getX()
 float cBall::getZ()
 {
 	return z;
+}
+
+float cBall::getDifX()
+{
+	return difX;
+}
+
+float cBall::getDifZ()
+{
+	return difZ;
 }
 
 void cBall::setColor(float r, float g, float b)
@@ -53,7 +69,7 @@ void cBall::Logic(float position)
 	x += difX;
 	z += difZ;
 
-	if (z >= SCENE_DEPTH/2 && z <= (SCENE_DEPTH/2)+1) {
+/*	if (z >= SCENE_DEPTH/2 && z <= (SCENE_DEPTH/2)+1) {
 		if (x >= position && x <= position+PLAYER_WIDTH/2) {
 			difZ *= -1;
 		}
@@ -64,10 +80,10 @@ void cBall::Logic(float position)
 
 	if(x > SCENE_WIDTH/2) difX *= -1;
 	if(x < -SCENE_WIDTH/2) difX *= -1;
-	if(z < -SCENE_DEPTH/2) difZ *= -1;
+	if(z < -SCENE_DEPTH/2) difZ *= -1;*/
 	if(z > (SCENE_DEPTH/2)+2) {
 		setPos(0,12);
-		difX = 0.1;
-		difZ = 0.1;
+		difX = 0.0;
+		difZ = 0.02;
 	}
 }

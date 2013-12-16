@@ -11,22 +11,26 @@ public:
 	cScene(void);
 	virtual ~cScene(void);
 
-	bool Init();
+	void Init();
 	void Draw(cData *Data);
 
 	void InitBlocks(int level);
 
-	void RenderBlocks();
-	void RenderBalls(float position);
+	void RenderBlocks(cData *Data);
+	void RenderBalls();
 	
 	std::vector<cBall> GetBalls();  
 	void SetBalls(std::vector<cBall> balls);
+
+	std::vector<cBlock> GetBlocks();  
+	void SetBlocks(std::vector<cBlock> blocks);
+
 	
 private:
 
-	std::vector<cBall> ball;
-	cBlock *blocks[16*16];
-    cBlock block;
+	std::vector<cBall> balls;
+	std::vector<cBlock> blocks;
+	std::vector<cBlock> scene;
     int num_blocks;
 
 };
