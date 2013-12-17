@@ -17,14 +17,18 @@ void cPhysics::CollidePlayer(cBall &ball, cPlayer &player)
 	float derPlayer = player.getPosition() + PLAYER_WIDTH/2;
 
 	if ((botBall > topPlayer) &&
-			(((izqBall > izqPlayer ) 
-			&& (izqBall < derPlayer)) 
-			|| ((derBall < izqPlayer ) 
-			&& (derBall > derPlayer)))) ball.setDif(ball.getDifX(), ball.getDifZ()*-1);
+		(((izqBall > izqPlayer)
+		&& (izqBall < derPlayer))
+		|| ((derBall < izqPlayer)
+		&& (derBall > derPlayer)))) {
+			if (izqBall > derPlayer - (PLAYER_WIDTH/3)) ball.setDif(0.07, -0.03);
+			else if (derBall < izqPlayer + (PLAYER_WIDTH / 3)) ball.setDif(-0.07, -0.03);
+			else ball.setDif(ball.getDifX(), ball.getDifZ()*-1);
+	}
 	ball.setPos(ball.getX() + ball.getDifX(), ball.getZ() + ball.getDifZ());
 
 	if(ball.getX() > SCENE_WIDTH/2) ball.setDif(ball.getDifX()*-1, ball.getDifZ());
-	if(ball.getX() < -SCENE_WIDTH / 2) ball.setDif(ball.getDifX()*-1, ball.getDifZ());
+	if(ball.getX() < -SCENE_WIDTH/2) ball.setDif(ball.getDifX()*-1, ball.getDifZ());
 	if(ball.getZ() < -SCENE_DEPTH/2) ball.setDif(ball.getDifX(), ball.getDifZ()*-1);
 	if(ball.getZ() > (SCENE_DEPTH/2)+2) {
 		ball.setPos(0.0, 12.0);

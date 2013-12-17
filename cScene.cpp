@@ -31,7 +31,7 @@ void cScene::Init()
 
 	int num_block = 0;
 	scene = std::vector<cBlock>(SCENE_DEPTH * 3 + SCENE_WIDTH + SCENE_DEPTH*(SCENE_WIDTH + 2));
-	for (int i = 0; i < SCENE_DEPTH; ++i)
+	for (int i = 0; i < SCENE_DEPTH/BLOCK_DEPTH; ++i)
 	{
 		scene[num_block].setPos(x, y, z);
 
@@ -42,14 +42,14 @@ void cScene::Init()
 		(scene[num_block]).setColor(r, g, b);
 		(scene[num_block]).setTex(IMG_GRASS_SIDE);
 		++num_block;
-		z -= 1;
+		z -= BLOCK_DEPTH;
 	}
 
 	x = -(SCENE_WIDTH / 2.0) - (BLOCK_WIDTH / 2.0);
 	y = -(SCENE_HEIGHT / 2.0) + (BLOCK_HEIGHT / 2.0);
 	z = -(SCENE_DEPTH / 2.0) - (BLOCK_DEPTH / 2.0);
 
-	for (int i = 0; i < SCENE_WIDTH + 2; ++i)
+	for (int i = 0; i < (SCENE_WIDTH/BLOCK_WIDTH) + 2*BLOCK_WIDTH; ++i)
 	{
 		(scene[num_block]).setPos(x, y, z);
 
@@ -60,14 +60,14 @@ void cScene::Init()
 		(scene[num_block]).setColor(r, g, b);
 		(scene[num_block]).setTex(IMG_GRASS_SIDE);
 		++num_block;
-		x += 1;
+		x += BLOCK_WIDTH;
 	}
 
 	x = (SCENE_WIDTH / 2.0) + (BLOCK_WIDTH / 2.0);
 	y = -(SCENE_HEIGHT / 2.0) + (BLOCK_HEIGHT / 2.0);
 	z = -(SCENE_DEPTH / 2.0) + (BLOCK_DEPTH / 2.0);
 
-	for (int i = 0; i < SCENE_DEPTH; ++i)
+	for (int i = 0; i < SCENE_DEPTH/BLOCK_DEPTH; ++i)
 	{
 		(scene[num_block]).setPos(x, y, z);
 
@@ -78,16 +78,16 @@ void cScene::Init()
 		(scene[num_block]).setColor(r, g, b);
 		(scene[num_block]).setTex(IMG_GRASS_SIDE);
 		++num_block;
-		z += 1;
+		z += BLOCK_DEPTH;
 	}
 
 	x = -(SCENE_WIDTH / 2.0) - (BLOCK_WIDTH / 2.0);
 	y = -(SCENE_HEIGHT / 2.0) - (BLOCK_HEIGHT / 2.0);
 	z = (SCENE_DEPTH / 2.0) - (BLOCK_DEPTH / 2.0);
 
-	for (int i = 0; i < SCENE_DEPTH; ++i)
+	for (int i = 0; i < SCENE_DEPTH/BLOCK_DEPTH; ++i)
 	{
-		for (int j = 0; j < SCENE_WIDTH + 2; ++j)
+		for (int j = 0; j < (SCENE_WIDTH/BLOCK_WIDTH) + 2*BLOCK_WIDTH; ++j)
 		{
 			(scene[num_block]).setPos(x, y, z);
 
@@ -98,31 +98,31 @@ void cScene::Init()
 			(scene[num_block]).setColor(r, g, b);
 			(scene[num_block]).setTex(IMG_GRASS_SIDE);
 			++num_block;
-			x += 1;
+			x += BLOCK_WIDTH;
 		}
-		z -= 1;
+		z -= BLOCK_DEPTH;
 		x = -(SCENE_WIDTH / 2.0) - (BLOCK_WIDTH / 2.0);
 	}
 }
 
 void cScene::Draw(cData *Data)
 {
-	for (int i = 0; i < SCENE_DEPTH; ++i)
+	for (int i = 0; i < SCENE_DEPTH/BLOCK_DEPTH; ++i)
 	{
 		scene[i].Draw(Data);
 	}
 
-	for (int i = SCENE_DEPTH; i < SCENE_WIDTH + SCENE_DEPTH + 2; ++i)
+	for (int i = SCENE_DEPTH/BLOCK_DEPTH; i < SCENE_WIDTH/BLOCK_WIDTH + SCENE_DEPTH/BLOCK_DEPTH + 2*BLOCK_DEPTH; ++i)
 	{
 		(scene[i]).Draw(Data);
 	}
 
-	for (int i = SCENE_WIDTH + SCENE_DEPTH + 2; i < SCENE_WIDTH + SCENE_DEPTH + 2 + SCENE_DEPTH; ++i)
+	for (int i = SCENE_WIDTH/BLOCK_WIDTH + SCENE_DEPTH/BLOCK_DEPTH + 2*BLOCK_DEPTH; i < SCENE_WIDTH/BLOCK_WIDTH + SCENE_DEPTH/BLOCK_DEPTH + 2*BLOCK_DEPTH + SCENE_DEPTH/BLOCK_DEPTH; ++i)
 	{
 		(scene[i]).Draw(Data);
 	}
 
-	for (int i = SCENE_WIDTH + SCENE_DEPTH + 2 + SCENE_DEPTH; i < SCENE_WIDTH + SCENE_DEPTH + 2 + SCENE_DEPTH + (SCENE_WIDTH + 2)*SCENE_DEPTH; ++i)
+	for (int i = SCENE_WIDTH / BLOCK_WIDTH + SCENE_DEPTH / BLOCK_DEPTH + 2 * BLOCK_DEPTH + SCENE_DEPTH / BLOCK_DEPTH; i < SCENE_WIDTH / BLOCK_WIDTH + SCENE_DEPTH / BLOCK_DEPTH + 2 * BLOCK_DEPTH + SCENE_DEPTH / BLOCK_DEPTH + (SCENE_WIDTH/BLOCK_WIDTH + 2*BLOCK_WIDTH)*(SCENE_DEPTH/BLOCK_DEPTH); ++i)
 	{
 		(scene[i]).Draw(Data);
 	}
