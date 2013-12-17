@@ -8,6 +8,7 @@ cBlock::cBlock(void)
 	this->y = 0.0;
 	this->z = 0.0;
 	pinta = true;
+	cayendo = false;
 }
 cBlock::~cBlock(void){}
 
@@ -25,6 +26,11 @@ void cBlock::setTex(int tex)
 
 
 float cBlock::getX()
+{
+	return this->x;
+}
+
+float cBlock::getY()
 {
 	return this->x;
 }

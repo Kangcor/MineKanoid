@@ -73,3 +73,29 @@ bool cPhysics::CornerInsideBox(float coordX, float coordZ, float top, float bot,
 {
 	return (coordX > izq) && (coordX < der) && (coordZ > top) && (coordZ < bot);
 }
+
+void cPhysics::FallingBlocks(std::vector<std::stack <cBlock> > &blocks)
+{
+	for (int i = 0; i < NUM_ROWS*NUM_COLUMNS; ++i) {
+		if (!blocks[i].top().pinta) {
+			blocks[i].pop();
+			blocks[i] = StackDown(blocks[i], BLOCK_HEIGHT / 60);
+		}
+	}
+}
+
+std::stack<cBlock> cPhysics::StackDown(std::stack<cBlock> blocks, float desc)
+{
+	std::stack<cBlock> stackAux;
+	while (!blocks.empty()){
+		cBlock block = blocks.top();
+		block.setPos(block.getX(), block.getY() - desc, block.getZ());
+		if (block.getY() > (-(SCENE_HEIGHT / 2) + (BLOCK_HEIGHT / 2.0))) block.cayendo = true;
+		blocks.pop();
+	}
+	while (!stackAux.empty()){
+		blocks.push(stackAux.top());
+		stackAux.pop();
+	}
+	return blocks;
+}

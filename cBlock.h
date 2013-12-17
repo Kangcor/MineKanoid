@@ -10,11 +10,13 @@ public:
 	void setTex(int tex);
     void setPos(float x, float y, float z);
 	float getX();
+	float getY();
 	float getZ();
     void setColor(float r, float g, float b);
 	void Draw(cData *Data);
 	float r, g, b;
 	bool pinta;
+	bool cayendo;
 
 private:
 	float x, y, z;

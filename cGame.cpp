@@ -159,6 +159,7 @@ void cGame::BlockPhysics() {
 	for(int i = 0; i < NUM_ROWS*NUM_COLUMNS; ++i) {
 		if (blocks[i].top().pinta) Physics.CollideBlock(balls[0], blocks[i].top());
 	}
+//	Physics.FallingBlocks(blocks);
 	Scene.SetBlocks(blocks);
 	Scene.SetBalls(balls);
 }
