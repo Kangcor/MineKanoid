@@ -141,25 +141,33 @@ void cScene::InitBlocks(int level)
 		float z = -(BLOCK_DEPTH/2); //cambiar 0.5 por BLOCK_HEIGHT etc
 
         float r, g, b;
-		blocks = std::vector<cBlock> (NUM_ROWS*NUM_COLUMNS);
+		blocks = std::vector<std::stack <cBlock> >(NUM_ROWS*NUM_COLUMNS);
         for (int i = 0; i < NUM_ROWS; ++i)
         {
-                for (int j = 0; j < NUM_COLUMNS; ++j)
-                {
-                        blocks[num_block].setPos(x, y, z);
+			for (int j = 0; j < NUM_COLUMNS; ++j)
+			{
+				int altura = (rand() % 4);
+				float ymax = y + altura*BLOCK_HEIGHT;
+				altura++;
+				for (int k = 1; k <= altura; ++k) {
+					cBlock newBlock;
+					newBlock.setPos(x, ymax, z);
 
-                        r = (rand() % 256)/256.0;
-                        g = (rand() % 256)/256.0;
-                        b = (rand() % 256)/256.0;
+					r = (rand() % 256) / 256.0;
+					g = (rand() % 256) / 256.0;
+					b = (rand() % 256) / 256.0;
 
-                        (blocks[num_block]).setColor(r,g,b);
-						int tex = rand() % 5;
-						(blocks[num_block]).setTex(tex);
-						x += BLOCK_WIDTH;
-                        ++num_block;
-                }
-				x = BLOCK_WIDTH / 2 - (SCENE_WIDTH / 2);
-				z -= BLOCK_DEPTH;
+					newBlock.setColor(r, g, b);
+					int tex = rand() % 5;
+					newBlock.setTex(tex);
+					ymax -= BLOCK_HEIGHT;
+					(blocks[num_block]).push(newBlock);
+				}
+				x += BLOCK_WIDTH;
+				++num_block;
+			}
+			x = BLOCK_WIDTH / 2 - (SCENE_WIDTH / 2);
+			z -= BLOCK_DEPTH;
         }
 
         num_blocks = num_block;
@@ -167,7 +175,13 @@ void cScene::InitBlocks(int level)
 
 void cScene::RenderBlocks(cData *Data)
 {
-	for (int i = 0; i < num_blocks; ++i) (blocks[i]).Draw(Data);
+	std::vector<std::stack<cBlock> > blocksaux = blocks;
+	for (int i = 0; i < num_blocks; ++i) {
+		while (!blocksaux[i].empty()){
+			blocksaux[i].top().Draw(Data);
+			blocksaux[i].pop();
+		}
+	}
 }
 
 void cScene::RenderBalls()
@@ -187,12 +201,12 @@ void cScene::SetBalls(std::vector<cBall> balls)
 	this->balls = balls;
 }
 
-std::vector<cBlock> cScene::GetBlocks()
+std::vector<std::stack <cBlock> > cScene::GetBlocks()
 {
 	return blocks;
 }
 
-void cScene::SetBlocks(std::vector<cBlock> blocks)
+void cScene::SetBlocks(std::vector<std::stack <cBlock> > blocks)
 {
 	this->blocks = blocks;
 }

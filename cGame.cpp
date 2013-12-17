@@ -154,10 +154,10 @@ void cGame::BallPhysics() {
 }
 
 void cGame::BlockPhysics() {
-	std::vector<cBlock> blocks = Scene.GetBlocks();
+	std::vector<std::stack <cBlock> > blocks = Scene.GetBlocks();
 	std::vector<cBall> balls = Scene.GetBalls();
 	for(int i = 0; i < NUM_ROWS*NUM_COLUMNS; ++i) {
-		if (blocks[i].pinta) Physics.CollideBlock(balls[0], blocks[i]);
+		if (blocks[i].top().pinta) Physics.CollideBlock(balls[0], blocks[i].top());
 	}
 	Scene.SetBlocks(blocks);
 	Scene.SetBalls(balls);
