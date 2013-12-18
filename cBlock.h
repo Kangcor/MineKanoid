@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cData.h"
+#include "cParticle.h"
 
 class cBlock
 {
@@ -14,12 +15,15 @@ public:
 	float getZ();
     void setColor(float r, float g, float b);
 	void Draw(cData *Data);
+	void DrawParticle();
 	float r, g, b;
 	bool pinta;
 	bool cayendo;
+	int explosion;
 
 private:
 	float x, y, z;
 	int id_DL;
 	int tex;
+	cParticle particula;
 };

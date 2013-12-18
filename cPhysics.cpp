@@ -51,21 +51,25 @@ void cPhysics::CollideBlock(cBall &ball, cBlock &block)
 		if ((izqBall - derBlock) < (botBlock - topBall)) ball.setDif(ball.getDifX()*-1, ball.getDifZ());
 		else ball.setDif(ball.getDifX(), ball.getDifZ()*-1);
 		block.pinta = false;
+		block.explosion = 0;
 	}
 	else if (CornerInsideBox(derBall, topBall, topBlock, botBlock, izqBlock, derBlock)) {
 		if ((derBall - izqBlock) < (botBlock - topBall)) ball.setDif(ball.getDifX()*-1, ball.getDifZ());
 		else ball.setDif(ball.getDifX(), ball.getDifZ()*-1);
 		block.pinta = false;
+		block.explosion = 0;
 	}
 	else if (CornerInsideBox(izqBall, botBall, topBlock, botBlock, izqBlock, derBlock)) {
 		if ((izqBall - derBlock) < (topBlock - botBall)) ball.setDif(ball.getDifX()*-1, ball.getDifZ());
 		else ball.setDif(ball.getDifX(), ball.getDifZ()*-1);
 		block.pinta = false;
+		block.explosion = 0;
 	}
 	else if (CornerInsideBox(derBall, botBall, topBlock, botBlock, izqBlock, derBlock)) {
 		if ((derBall - izqBlock) < (topBlock - botBall)) ball.setDif(ball.getDifX()*-1, ball.getDifZ());
 		else ball.setDif(ball.getDifX(), ball.getDifZ()*-1);
 		block.pinta = false;
+		block.explosion = 0;
 	}
 }
 
