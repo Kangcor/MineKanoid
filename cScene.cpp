@@ -157,6 +157,7 @@ void cScene::InitBlocks(int level)
 			y = -(SCENE_HEIGHT / 2) + (BLOCK_HEIGHT / 2.0);
 			int altura = (rand() % 4);
 			altura++;
+			altura = 1; //Forzamos altura 1 para evitar el multibloque
 			std::vector<cBlock> colBlock(altura);
 			for (int k = 0; k < altura; ++k) {
 				colBlock[k].setPos(x, y, z);

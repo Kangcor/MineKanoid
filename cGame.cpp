@@ -176,7 +176,7 @@ bool cGame::Process()
 		glDisable(GL_LIGHT1);
 		glDisable(GL_LIGHT2);
 	}
-	if (keys[119])
+/*	if (keys[119])
 	{
 		move = true;
 		keys[97] = false;
@@ -185,29 +185,29 @@ bool cGame::Process()
 	{
 		away = true;
 		keys[102] = false;
-	}
-	if (keys[97])
+	}*/
+	if (keys['0'])
 	{
-		left = true;
 		Camera.nextLevel(0);
-		keys[97] = false;
 	}
-	if (keys[100])
+	if (keys['1'])
 	{
-		right = true;
 		Camera.nextLevel(1);
-		keys[100] = false;
+	}
+	if (keys['2'])
+	{
+		Camera.nextLevel(2);
 	}
 
 	//Game Logic
 	//...
 
 	BallPhysics();
-	if (frame > 10)
-	{
+	//if (frame > 10)
+	//{
 		BlockPhysics();
-		frame = 0;
-	}
+	//	frame = 0;
+	//}
 	return res;
 }
 
@@ -231,7 +231,7 @@ void cGame::Render()
 	Scene1.RenderBlocks(&Data);
 	Scene1.RenderBalls();
 	Player1.Draw(&Data);
-	Scene1.RenderWin(&Data);
+	//Scene1.RenderWin(&Data);
 	glPopMatrix();
 
 	
@@ -275,6 +275,7 @@ void cGame::BlockPhysics() {
 	for (int i = 0; i < NUM_ROWS*NUM_COLUMNS; ++i) {
 		if (blocks[i][0].pinta) Physics.CollideBlock(balls[0], blocks[i][0]);
 	}
+//	Physics.FallingBlocks(blocks);
 	Scene1.SetBlocks(blocks);
 	Scene1.SetBalls(balls);
 }

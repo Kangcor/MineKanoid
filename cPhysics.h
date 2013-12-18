@@ -15,6 +15,6 @@ public:
 	void CollidePlayer(cBall &ball, cPlayer &player);
 	void CollideBlock(cBall &ball, cBlock &block);
 	bool CornerInsideBox(float coordX, float coordZ, float top, float bot, float izq, float der);
-	void FallingBlocks(std::vector<std::stack <cBlock> > &blocks);
-	std::stack<cBlock> cPhysics::StackDown(std::stack<cBlock> blocks, float desc);
+	void FallingBlocks(std::vector<std::vector <cBlock> > &blocks);
+	bool StackDown(cBlock &block, float desc);
 };
